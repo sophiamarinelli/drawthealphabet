@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Camera Test</title>
+</head>
+
+<body>
+    <div class="header">
+        <p>Draw the Alphabet</p>
+        <br>
+        <a href="/all.html">Gallery</a>
+        <button id="record">Start Recording</button>
+        <button id="play">Play</button>
+        <button id="download">Download</button>
+        <span id="status"></span>
+    </div>
+    <script type="text/javascript">
+    let canvas;
+    let video;
+    let poseNet;
+    let poses = [];
+    let skeletons = [];
+
+    let pg;
+    let noseX;
+    let noseY;
+
+    let pNoseX;
+    let pNoseY;
+
+    function setup() {
+        // noCanvas();
+        canvas = createCanvas(400, 250);
+        canvas.id('p5canvas');
+        video = createCapture(VIDEO);
+        video.size(400, 250);
+
+
+        pixelDensity(1);
+        pg = createGraphics(width, height);
+        poseNet = ml5.poseNet(video, modelReady);
+
+        poseNet.on('pose', function(results) {
+            poses = results;
+        });
+
+        video.hide();
+        setUpCaptureVideo(pg);
+    }
+
+    function draw() {
+        video.loadPixels();
+        push();
+        translate(width, 0);
+        scale(-1, 1);
+        image(video, 0, 0, width, height);
+        image(pg, 0, 0, width, height);
+        pop();
+
+        drawKeypoints();
+    }
+
+    function drawKeypoints() {
+        // Loop through all the poses detected
+        for (let i = 0; i < min(poses.length, 1); i++) {
+            // For each pose detected, loop through all the keypoints
+            for (let j = 0; j < poses[i].pose.keypoints.length; j++) {
+                // A keypoint is an object describing a body part (like rightArm or leftShoulder)
+                let keypoint = poses[i].pose.keypoints[j];
+                // Only draw an ellipse is the pose probability is bigger than 0.2
+                if (keypoint.score > 0.2) {
+                    // fill(255, 0, 0);
+                    // noStroke();
+                    // ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
+                    // fill(0,255,0);
+                    // text(j, keypoint.position.x, keypoint.position.y);
+
+                    if (j == 0) {
+                        noseX = keypoint.position.x;
+                        noseY = keypoint.position.y;
+
+                        pg.stroke(240, 80, 0);
+                        pg.strokeWeight(10);
+                        pg.line(noseX, noseY, pNoseX, pNoseY);
+
+                        pNoseX = noseX;
+                        pNoseY = noseY;
+
+
+                    }
+                }
+            }
+        }
+    }
+
+    function gotPoses(results) {
+        poses = results;
+    }
+
+    function keyPressed() {
+        pg.clear();
+    }
+
+    function modelReady() {
+
+    }
+    </script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    font-size: 1em;
+}
+
+body {
+    background: #c4c0b5;
+}
+
+.header {
+    padding: 20px;
+}
+
+.holder {
+    display: grid;
+    margin: 10px;
+}
+
+
+button {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background: #c4c0b5;
+}
+
+#p5canvas {
+    border: 1px solid black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: 40%;
+
+}
+
+a {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+a:visited {
+    color: black;
+}
+
+.date {
+    display: none;
+    padding: 10px;
+    position: absolute;
+}
+
+.picture {
+    display: inline-block;
+    width: 20%;
+}
+
+.picture:hover {
+    background: rgb(0, 80, 0);
+}
+
+.picture:hover .outputLetter {
+    background: rgb(0, 80, 0);
+}
+
+.picture:hover .date {
+    display: block;
+    color: black;
+    background: rgb(0, 80, 0);
+}
+
+.picture:hover .randomLetter {
+    display: block;
+    color: black;
+    font-size: 3em;
+}
+
+.outputLetter {
+    border: 1px solid black;
+    margin: 10px;
+    display: block;
+    width: 90%;
+}
+
+.randomLetter {
+    display: none;
+    padding-left: 10px;
+}

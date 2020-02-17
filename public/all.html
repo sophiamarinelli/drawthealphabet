@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>All</title>
+</head>
+
+<body>
+    <div class="header">
+        <p>Draw the Alphabet</p>
+        <a href="/index.html"> &#8592 Capture more </a>
+        <span id="status"></span>
+    </div>
+    <div class="holder">
+        <script type="text/javascript">
+        getData();
+
+        async function getData() {
+            const response = await fetch('/api');
+            const data = await response.json()
+
+            for (item of data) {
+                const div = document.createElement('div');
+                div.className = "picture";
+                const date = document.createElement('div');
+                date.className = "date";
+                const video = document.createElement('video');
+                video.className = "outputLetter";
+
+                const dateString = new Date(item.timestamp).toLocaleString();
+                date.textContent = dateString;
+                video.autoplay = true;
+                video.loop = true;
+                video.src = item.videoBase64Data;
+                video.load();
+
+                div.append(date, video);
+                document.body.append(div);
+            }
+            console.log(data);
+        }
+        </script>
+    </div>
+</body>
+
+</html>
