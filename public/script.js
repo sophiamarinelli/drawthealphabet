@@ -10,11 +10,11 @@ function setUpCaptureVideo(pg) {
     const canvas = document.querySelector('canvas.p5Canvas');
 
     const recordButton = document.querySelector('button#record');
-    const playButton = document.querySelector('button#play');
-    const downloadButton = document.querySelector('button#download');
+    // const playButton = document.querySelector('button#play');
+    // const downloadButton = document.querySelector('button#download');
     recordButton.onclick = toggleRecording;
-    playButton.onclick = play;
-    downloadButton.onclick = download;
+    // playButton.onclick = play;
+    // downloadButton.onclick = download;
 
 
     const stream = canvas.captureStream(); // frames per second
@@ -44,8 +44,8 @@ function setUpCaptureVideo(pg) {
         } else {
             stopRecording();
             recordButton.textContent = 'Start Recording';
-            playButton.disabled = false;
-            downloadButton.disabled = false;
+            // playButton.disabled = false;
+            // downloadButton.disabled = false;
         }
     }
 
@@ -77,8 +77,8 @@ function setUpCaptureVideo(pg) {
         }
         console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
         recordButton.textContent = 'Stop Recording';
-        playButton.disabled = true;
-        downloadButton.disabled = true;
+        // playButton.disabled = true;
+        // downloadButton.disabled = true;
         mediaRecorder.onstop = handleStop;
         mediaRecorder.ondataavailable = handleDataAvailable;
         mediaRecorder.start(100); // collect 100ms of data
@@ -107,6 +107,7 @@ function setUpCaptureVideo(pg) {
             const json = await response.json();
             console.log(json);
             pg.clear();
+            canvas.clear();
         }
         // const image64 = pg.canvas.toDataURL();
         // console.log(image64);
@@ -121,23 +122,23 @@ function setUpCaptureVideo(pg) {
 
     }
 
-    function play() {
-        video.play();
-    }
+    // function play() {
+    //     video.play();
+    // }
 
-    function download() {
-        const blob = new Blob(recordedBlobs, { type: 'video/webm' });
-        const url = window.URL.createObjectURL(blob);
-        console.log(url)
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = 'test.webm';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }, 100);
-    }
+    // function download() {
+    //     const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+    //     const url = window.URL.createObjectURL(blob);
+    //     console.log(url)
+    //     const a = document.createElement('a');
+    //     a.style.display = 'none';
+    //     a.href = url;
+    //     a.download = 'test.webm';
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     setTimeout(() => {
+    //         document.body.removeChild(a);
+    //         window.URL.revokeObjectURL(url);
+    //     }, 100);
+    // }
 }

@@ -6,19 +6,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Camera Test</title>
+    <title>Draw the Alphabet</title>
 </head>
 
 <body>
     <div class="header">
-        <p>Draw the Alphabet</p>
-        <br>
-        <a href="/all.html">Gallery</a>
+        <p>Draw a letter with your nose.</p>
         <button id="record">Start Recording</button>
-        <button id="play">Play</button>
-        <button id="download">Download</button>
+        <!-- <button id="play">Play</button> -->
+        <!-- <button id="download">Download</button> -->
         <span id="status"></span>
     </div>
+    <a href="/all.html" id="gallery">Gallery</a>
     <script type="text/javascript">
     let canvas;
     let video;
@@ -35,10 +34,10 @@
 
     function setup() {
         // noCanvas();
-        canvas = createCanvas(400, 250);
+        canvas = createCanvas(1920, 1080);
         canvas.id('p5canvas');
         video = createCapture(VIDEO);
-        video.size(400, 250);
+        video.size(1920, 1080);
 
 
         pixelDensity(1);
@@ -58,7 +57,7 @@
         push();
         translate(width, 0);
         scale(-1, 1);
-        image(video, 0, 0, width, height);
+        // image(video, 0, 0, width, height);
         image(pg, 0, 0, width, height);
         pop();
 
@@ -85,7 +84,7 @@
                         noseY = keypoint.position.y;
 
                         pg.stroke(240, 80, 0);
-                        pg.strokeWeight(10);
+                        pg.strokeWeight(40);
                         pg.line(noseX, noseY, pNoseX, pNoseY);
 
                         pNoseX = noseX;
@@ -104,6 +103,7 @@
 
     function keyPressed() {
         pg.clear();
+        canvas.clear();
     }
 
     function modelReady() {

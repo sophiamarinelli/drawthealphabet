@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     font-family: 'Helvetica';
-    font-weight: lighter;
-    font-size: 1em;
+    /*    font-weight: lighter;*/
+    font-size: 100px;
 }
 
 body {
@@ -11,7 +11,14 @@ body {
 }
 
 .header {
-    padding: 20px;
+    /*    margin: 20px;
+    padding: 20px;*/
+    /*    width: 400px;*/
+    color: black;
+}
+
+button:hover {
+    color: rgb(240, 80, 0);
 }
 
 .holder {
@@ -21,23 +28,25 @@ body {
 
 
 button {
-    border: 1px solid black;
+    border: 10px solid black;
     padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 100px;
+    color: red;
     background: #c4c0b5;
 }
 
 #p5canvas {
-    border: 1px solid black;
+    /*    border: 1px solid black;*/
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
+    top: 0;
+    left: 0;
+    /*    margin-top: 10%;*/
     width: 40%;
-
+    position: absolute;
+    pointer-events: none;
 }
 
 a {
@@ -64,24 +73,10 @@ a:visited {
     width: 20%;
 }
 
-.picture:hover {
-    background: rgb(0, 80, 0);
-}
-
-.picture:hover .outputLetter {
-    background: rgb(0, 80, 0);
-}
 
 .picture:hover .date {
     display: block;
     color: black;
-    background: rgb(0, 80, 0);
-}
-
-.picture:hover .randomLetter {
-    display: block;
-    color: black;
-    font-size: 3em;
 }
 
 .outputLetter {
@@ -89,9 +84,16 @@ a:visited {
     margin: 10px;
     display: block;
     width: 90%;
+    text-align: center;
 }
 
 .randomLetter {
     display: none;
     padding-left: 10px;
+}
+
+#gallery {
+    position: fixed;
+    top: 20px;
+    right: 20px;
 }
