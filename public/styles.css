@@ -7,7 +7,8 @@
 }
 
 body {
-    background: #c4c0b5;
+    /*background: #c4c0b5;*/
+    background: white;
 }
 
 .header {
@@ -17,9 +18,6 @@ body {
     color: black;
 }
 
-button:hover {
-    color: rgb(240, 80, 0);
-}
 
 .holder {
     display: grid;
@@ -35,7 +33,7 @@ button {
     display: inline-block;
     font-size: 100px;
     color: red;
-    background: #c4c0b5;
+    /*    background: #c4c0b5;*/
 }
 
 #p5canvas {
@@ -50,12 +48,8 @@ button {
 }
 
 a {
-    border: 1px solid black;
-    padding: 5px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
 }
 
 a:visited {
@@ -63,37 +57,28 @@ a:visited {
 }
 
 .date {
-    display: none;
-    padding: 10px;
-    position: absolute;
+    padding-top: 10px;
+    position: relative;
+    bottom: 0;
+    font-size: 10px;
 }
 
 .picture {
     display: inline-block;
-    width: 20%;
-}
-
-
-.picture:hover .date {
-    display: block;
-    color: black;
+    width: 10%;
+    height: 100px;
+    margin: 10px;
 }
 
 .outputLetter {
-    border: 1px solid black;
-    margin: 10px;
+
     display: block;
-    width: 90%;
+    width: 100%;
     text-align: center;
+    color: blue;
 }
 
 .randomLetter {
     display: none;
     padding-left: 10px;
-}
-
-#gallery {
-    position: fixed;
-    top: 20px;
-    right: 20px;
 }

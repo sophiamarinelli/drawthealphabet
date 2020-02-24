@@ -16,8 +16,8 @@
         <!-- <button id="play">Play</button> -->
         <!-- <button id="download">Download</button> -->
         <span id="status"></span>
+        <button><a href="/all.html" id="gallery">Gallery</a></button>
     </div>
-    <a href="/all.html" id="gallery">Gallery</a>
     <script type="text/javascript">
     let canvas;
     let video;
@@ -83,7 +83,7 @@
                         noseX = keypoint.position.x;
                         noseY = keypoint.position.y;
 
-                        pg.stroke(240, 80, 0);
+                        pg.stroke(255, 0, 0);
                         pg.strokeWeight(40);
                         pg.line(noseX, noseY, pNoseX, pNoseY);
 
@@ -102,8 +102,13 @@
     }
 
     function keyPressed() {
-        pg.clear();
-        canvas.clear();
+        if (keyCode == BACKSPACE) {
+            console.log('hey')
+            pg.clear();
+            canvas.clear();
+        } else {
+            return false;
+        }
     }
 
     function modelReady() {
