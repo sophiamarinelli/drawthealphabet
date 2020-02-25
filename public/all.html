@@ -8,11 +8,15 @@
 
 <body>
     <div class="header">
-        <p>Gallery</p>
-<button><a href="/index.html"> &#8592 Back </a></button> <span id="status"></span>
+        <!-- <p>Gallery</p> -->
+        <a href="/index.html"> &#8592 Draw</a>
     </div>
     <div class="holder">
         <script type="text/javascript">
+        const container = document.createElement('div');
+        container.className = "container";
+        document.body.append(container);
+
         getData();
 
         async function getData() {
@@ -35,9 +39,11 @@
                 video.src = item.videoBase64Data;
                 video.load();
 
+
                 div.append(video, date);
-                document.body.append(div);
+                container.append(div);
             }
+
             console.log(data);
         }
         </script>
